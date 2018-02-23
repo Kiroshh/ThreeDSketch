@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>adding profiles</title>
+	        <meta charset="utf-8">
+
+	  <link rel="stylesheet" href="style/nav.css" />
+
+</head>
+<body>
+
+<div class="navbar">
+  <a href="index.html">Home</a>
+  <a href="profile.html">Profiles</a>
+   <a href="#">Images</a>
+  <a href="indexx.html">3d models</a>
+</div>
+<div>
+<br>
+<br><br>
+<br>
+<table>
+	<tr>
+		<td>ID: </td>
+		<td><input type="text" name="id" id="user_id"></td>
+	</tr>
+	<tr>
+		<td>Criminal's Name:</td>
+		<td><input type="text" name="user_name" id="user_name"></td>
+	</tr>
+	<tr>
+		<td>Age:</td>
+		<td><input type="text" name="age" id="age"></td>
+	</tr>
+	<tr>
+		<td>Image:</td>
+		<td><input type="file" id="file"></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<button onclick="Save()">Save</button>
+			<button onclick="Update()">Update</button>
+			<button onclick="Delete()">Delete</button>
+		</td>
+	</tr>
+</table>
+</div>
+<div>
+<h3>List</h3>
+<table id="tbl_users_list" border="1">
+	<tr>
+		<td>#ID</td>
+		<td>Name</td>
+		<td>Age</td>
+
+	</tr>
+</table>
+</div>
+<script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
+<script >
+    // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBndOA5BIo0xys99VQGu3bVuBUy2Wb2HFw",
+    authDomain: "threedsketch.firebaseapp.com",
+    databaseURL: "https://threedsketch.firebaseio.com",
+    projectId: "threedsketch",
+    storageBucket: "",
+    messagingSenderId: "831530143584"
+  };
+  firebase.initializeApp(config);
+
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="profile.js"></script>
+
+</body>
+</html>
