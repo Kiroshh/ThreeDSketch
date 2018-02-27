@@ -96,3 +96,7 @@ function Delete(){
 	window.location.reload();
 
 }
+function logoutd(){
+	  firebase.auth().signOut();
+
+}
