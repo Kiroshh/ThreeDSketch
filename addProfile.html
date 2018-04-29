@@ -4,23 +4,49 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
-    <title>Registration Form</title>
+    <title>ThreeDSketch</title>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
   <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="style/profile.css" />
 
 </head>
 
 <body>
-<h3>   Uploading models</h3>
+  <nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="home.html">Home</a>
+        <a class="navbar-brand" href="profile.html">Profiles</a>
+        <a class="navbar-brand" href="addProfile.html">3D Models</a>
+        <a class="navbar-brand" href="gallery.html">Images</a>
+
+      </div>
+     
+    </div>
+  </nav>
+
+<h4>   Upload</h4>
 <label class="upload-group">Upload File
 <input type="File" class="upload-group" id="file" >
 </label>
 <button type= button class="btn btn-primary" id="uploadButton" onclick="uploadFile()">Upload</button>
-<progress value="0" max="100" id="progressBar">0%</progress>    
+<progress value="0" max="100" id="progressBar">0%</progress> 
+<br><br> 
+<h4>   View</h4>
+<a href="model.html">View Model</a> 
 <div>
-<h3 align="center">Model Details</h3>
+<h3 align="center">Uploaded Models</h3>
+
+ <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for models..">
+
 <table align="center" id="tbl_models_list" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp"">
   <tr>
     <td class="mdl-data-table__cell--non-numeric">Name</td>
@@ -49,7 +75,7 @@
 
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="addModel.js"></script>
+<script src="script/addModel.js"></script>
 </body>
 
 </html>

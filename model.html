@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>3d model</title>
+        <title>ThreeDSketch</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
           <link rel="stylesheet" href="style/model.css" />
@@ -9,13 +9,19 @@
     </head>
     <body>
         <div id="info">
-            3d model of criminal id :__
+  <div>
+    <input type="text" id="uname" name="name"  placeholder="Enter name">
+  </div>
+  <div>
+    <button id="chose" onclick="chosee() "onfocus="this.value=''">Submit</button>
+  </div>
         <br>  <br> <br>
-            <input type="File" id="file" >
-
+            <p align="left" id="namee">3d model of profilee</p> 
+            <a href="addProfile.html" id="nav"  >Back</a>
             <button id="pickpoint" onclick="calcDistance()">measure </button>
             <button id="pauseani" onclick="pause()">pause/play</button>
-            <button id="zoom" onclick="zoom()">zoom</button>
+            <p   id="measure" style="n">Choose two points </p> 
+
         </div>
 
 
@@ -28,14 +34,20 @@
             if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
             let container, stats;
             let camera, cameraTarget, scene, renderer;
-             //  var location='model/S002_001.ply';const
+            let count =0;
             let filepath;
             let clickedd=true;
             let pausee=false;
-            init();
-            animate();
+            let locationn;
+            let points=[];
+            let temp;
+           // if (count!=0){
+           // init();
+           // animate();
+          //}
             function init() {
               container = document.createElement( 'div' );
+              document.getElementById("namee").innerHTML = document.getElementById("uname").value;
               document.body.appendChild( container );
               camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 1, 15 );
               camera.position.set( 3, 0.15, 3 );
@@ -58,11 +70,11 @@
               var loader = new THREE.PLYLoader();
 
               //should do a file selection method to dynamically select file i.e.filepath
-              if(clickedd==1){
-               getFile('model/S002_001.ply');
-              }
+              //if(clickedd==1){
+              // getFile('model/S002_001.ply');
+              //}
 
-              loader.load( filepath, function ( geometry ) {
+              loader.load( locationn, function ( geometry ) {
                 geometry.computeVertexNormals();
                 const material = new THREE.MeshStandardMaterial( { color: 0x0055ff, flatShading: true } );
                 const mesh = new THREE.Mesh( geometry, material );
@@ -98,19 +110,13 @@
             }
 
             function calcDistance() {
-              clickedd=false;
-              /*
-              *TODO: 
-              *find the euclidean distance
-              *scale it
-              *display to user
-              */
+               clickedd=false;            
+               document.getElementById("measure").style.display="block";
+
             }
 
                //method for getting x,y,z coordinates of mouse click 
             function onDocumentMouseDown( event ) {
-            //  filepath='model/S001_001.ply';
-              //location.reload(true);
               event.preventDefault();
               let vector = new THREE.Vector3();// 3D coordinate object 
               vector.set(
@@ -122,10 +128,35 @@
               let intersects = raycaster.intersectObjects(scene.children);
               if (intersects.length > 0) {
                   let selected = intersects[0];// Take the first object
+
                   if (!clickedd){ 
                       console.log("x:"+selected.point.x);
                       console.log("y:"+selected.point.y);
                       console.log("z:"+selected.point.z);
+                      if(count%2==0){
+                      points[0]=selected.point.x;
+                      points[1]=selected.point.y;
+                      points[2]=selected.point.z;
+
+                    }else{
+                      points[3]=selected.point.x;
+                      points[4]=selected.point.y;
+                      points[5]=selected.point.z;
+                      let length = Math.sqrt(((points[3]-points[0])* (points[3]-points[0]))+
+                                      ((points[4]-points[1])* (points[4]-points[1]))+
+                                      ((points[5]-points[2])* (points[5]-points[2])))
+                      //scaling to real world dimensions
+                      temp=(length/0.58)*100;
+                      temp =Math.round(temp * 100) / 100;
+
+                      //console.log((length/0.58)*100);
+                       document.getElementById("measure").innerHTML=temp + " cm";
+
+                    }
+
+                    count++;
+                    console.log(count);
+                    calcDistance();
                   }
               }
             }
@@ -178,10 +209,19 @@
               pausee=pausee==true?false:true;
             }
 
-            function zoom() {
-              // TODO: add logic to zoom
+          
+            function chosee(){
+              locationn ="model/"
+              locationn += document.getElementById("uname").value ; 
+              console.log(locationn);
+             // count++;
+              document.getElementById("uname").style.display = "none";
+              document.getElementById("chose").style.display = "none";
+              init();
+              animate();
+
             }
- 
+
         </script>
     </body>
 </html>

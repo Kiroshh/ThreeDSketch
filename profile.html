@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>adding profiles</title>
+	<title>ThreeDSketch</title>
 	        <meta charset="utf-8">
 
 	  <link rel="stylesheet" href="style/profile.css" />
@@ -23,9 +23,8 @@
       <nav class="mdl-navigation">
         <a class="mdl-navigation__link" href="home.html">Home</a>
         <a class="mdl-navigation__link" href="#">Profiles</a>
-        <a class="mdl-navigation__link" href="">Images</a>
-        <a class="mdl-navigation__link" href="">Notifications</a>
-        <a class="mdl-navigation__link" href="model.html">Models</a>
+        <a class="mdl-navigation__link" href="gallery.html">Images</a>
+        <a class="mdl-navigation__link" href="addProfile.html">Models</a>
       </nav>
     </div>
   </header>
@@ -39,7 +38,7 @@
 <table  align="center" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
 	<tr>
 		<td class="mdl-data-table__cell--non-numeric">ID: </td>
-		<td class="mdl-data-table__cell--non-numeric"><input type="text" name="id" id="user_id"></td>
+		<td class="mdl-data-table__cell--non-numeric"><input type="text" name="id" id="user_id" autocomplete="off"></td>
 	</tr>
 	<tr>
 		<td class="mdl-data-table__cell--non-numeric">Criminal's Name:</td>
@@ -48,6 +47,10 @@
 	<tr>
 		<td class="mdl-data-table__cell--non-numeric">Age:</td>
 		<td class="mdl-data-table__cell--non-numeric"><input type="text" name="age" id="age"></td>
+	</tr>
+	<tr>
+		<td class="mdl-data-table__cell--non-numeric">Description:</td>
+		<td class="mdl-data-table__cell--non-numeric"><input type="text" name="desc" id="desc"></td>
 	</tr>
 	<tr>
 		<td class="mdl-data-table__cell--non-numeric">Image:</td>
@@ -62,13 +65,18 @@
 	</tr>
 </table>
 </div>
+
 <div>
-<h3 align="center">List of profiles</h3>
+<h3 align="center">profiles</h3>
+
+ <input type="text" align="center" id="profilee" onkeyup="findProfile()" placeholder="Search for models by name..">
+
 <table align="center" id="tbl_users_list" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp"">
 	<tr>
 		<td class="mdl-data-table__cell--non-numeric">#ID</td>
 		<td class="mdl-data-table__cell--non-numeric">Name</td>
 		<td >Age</td>
+		<td >Description</td>
 
 	</tr>
 </table>
@@ -93,7 +101,7 @@
 
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="profile.js"></script>
+<script src="script/profile.js"></script>
 
 </body>
 </html>
